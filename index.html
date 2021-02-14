@@ -1,0 +1,88 @@
+<html>
+	<head>
+		<script>
+			var first = [], second = [], unionResult, insertionResult;
+			function union()
+			{
+			    if (first[0].length > 0){
+			        unionResult = first.slice();
+			    } else {
+			        unionResult = [];
+			    }
+				if (second[0].length > 0) {
+    				for (var i = 0; i < second.length; i++) {
+    					if (first.indexOf(second[i]) == -1) {
+    						unionResult.push(second[i]);
+    					}
+    				}
+				}
+				document.getElementById('Union').innerHTML = unionResult;
+			}
+			function insertion()
+			{
+				insertionResult = [];
+				for (var i = 0; i < second.length; i++) {
+					if (first.indexOf(second[i]) != -1) {
+						insertionResult.push(second[i]);
+					}
+				}
+				document.getElementById('Insertion').innerHTML = insertionResult;
+			}
+			function complement()
+			{
+				var complementResult = [];
+				for (var i = 0; i < first.length; i++) {
+					if (second.indexOf(first[i]) == -1) {
+						complementResult.push(first[i]);
+					}
+				}
+				document.getElementById('Complement').innerHTML = complementResult;
+			}
+			function difference()
+			{
+				var differenceResult = [];
+				for (var i = 0; i < unionResult.length; i++) {
+					if (insertionResult.indexOf(unionResult[i]) == -1) {
+						differenceResult.push(unionResult[i]);
+					}
+				}
+				document.getElementById('Difference').innerHTML = differenceResult;
+			}
+			function check()
+			{
+				firstTemp = document.getElementById('firstSet').value;
+				secondTemp = document.getElementById('secondSet').value;
+				firstTemp = firstTemp.split(' ');
+				secondTemp = secondTemp.split(' ');
+				for (var i = 0; i < firstTemp.length; i++) {
+					if (first.indexOf(firstTemp[i]) == -1) {
+						first.push(firstTemp[i]);
+					}
+				}
+				for (var i = 0; i < secondTemp.length; i++) {
+					if (second.indexOf(secondTemp[i]) == -1) {
+						second.push(secondTemp[i]);
+					}
+				}
+				union();
+				insertion();
+				complement();
+				difference();
+				first = [];
+				second = [];
+			}
+		</script>
+	</head>
+	<body>
+		<form onsubmit="check();return false;">
+			Введите элементы двух множеств в формате CCIJ, разделяя пробелами <br> <br>
+			<label>Первое множество: <input type="text" id="firstSet" size="40" pattern="([0-9]{2}[02468][13579]\s{0,1})*" placeholder="Введите элементы первого множества"> </label> <br> <br>
+			<label>Второе множество: <input type="text" id="secondSet" size="40" pattern="([0-9]{2}[02468][13579]\s{0,1})*" placeholder="Введите элементы второго множества"> </label> <br> <br>
+			<input type="submit" value="Готово">
+		</form>
+		Объединение множеств: <span id="Union"></span> <br>
+		Пересечение множеств: <span id="Insertion"></span> <br>
+		Дополнение (отрицание) множеств: <span id="Complement"></span> <br>
+		Симметрическая разность множеств: <span id="Difference"></span> <br>
+	</body>
+</html>
