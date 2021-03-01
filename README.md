@@ -1,2 +1,2 @@
-# 2-nd Lab
+# 2-nd lab
  Discrete Math labs and etc
