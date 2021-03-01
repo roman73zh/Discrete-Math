@@ -1,2 +1,2 @@
-# Discrete-Math
+# 2-nd Lab
  Discrete Math labs and etc
