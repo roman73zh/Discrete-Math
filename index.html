@@ -2,7 +2,40 @@
 	<head>
 	    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 		<script>
-			
+			function reflecsive(arr, size){
+			    for (var i = 0; i < size; i++){
+			        if (arr[i][i] != 1){
+			            document.getElementById('Reflecsive').innerHTML = "нет";
+			            return false;
+			        }
+			    }
+			    document.getElementById('Reflecsive').innerHTML = "да";
+			    return true;
+			}
+			function symmetric(arr, size){
+			    for (var i = 0; i < size; i++){
+			        for (var j = 0; j < size; j++){
+			            if (arr[i][j] != arr[j][i]){
+			                document.getElementById('Symmetric').innerHTML = "нет";
+			                return false;
+			            }
+			        }
+			    }
+			    document.getElementById('Symmetric').innerHTML = "да";
+			    return true;
+			}
+			function coSymmetric(arr, size){
+			    for (var i = 0; i < size; i++){
+			        for (var j = 0; j < size; j++){
+			            if (arr[i][j] != -arr[j][i]){
+			                document.getElementById('CoSymmetric').innerHTML = "нет";
+			                return false;
+			            }
+			        }
+			    }
+			    document.getElementById('CoSymmetric').innerHTML = "да";
+			    return true;
+			}
 			function check()
 			{
 			    var elements = [], temp, size, matrix = [], result = "";
@@ -34,7 +67,6 @@
     				    }
     				    matrix[elements[i][0] - 1][elements[i][1] - 1] = 1;
     				}
-    				alert (+elements.length);
 				}
 				for (var i = 0; i < size; i++) {
 				    for (var j = 0; j < size; j++) {
@@ -43,7 +75,9 @@
 				    result += "\n";
 				}
 				document.getElementById('result').value = result;
-				document.getElementById('Difference').innerHTML = matrix + "\n" + matrix;
+				reflecsive(matrix, size);
+				symmetric(matrix, size);
+				coSymmetric(matrix, size);
 			}
 		</script>
 		<style type="text/css" media="all">
@@ -63,9 +97,9 @@
 			<label>Полученная матрица<textarea class="form-control" readonly="readonly" id="result" cols="30" rows="10"></textarea> </label> <br> <br>
 		</form>
 		</center>
-		Объединение множеств: <span id="Union"></span> <br>
-		Пересечение множеств: <span id="Insertion"></span> <br>
-		Дополнение (отрицание) множеств: <span id="Complement"></span> <br>
-		Симметрическая разность множеств: <span id="Difference"></span> <br>
+		Рефлексивность: <span id="Reflecsive"></span> <br>
+		Симметричность: <span id="Symmetric"></span> <br>
+		Кососимметричность: <span id="CoSymmetric"></span> <br>
+		Транзитивность: <span id="Difference"></span> <br>
 	</body>
 </html>
