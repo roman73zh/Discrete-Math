@@ -2,43 +2,100 @@
 	<head>
 	    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 		<script>
-			function reflecsive(arr, size){
-			    for (var i = 0; i < size; i++){
+		    var str;
+		    //Рефлексивность
+			function reflecsive(arr, size) {
+			    for (var i = 0; i < size; i++) {
 			        if (arr[i][i] != 1){
 			            document.getElementById('Reflecsive').innerHTML = "нет";
 			            return false;
 			        }
 			    }
 			    document.getElementById('Reflecsive').innerHTML = "да";
+			    str+= "рефлексивна";
 			    return true;
 			}
-			function symmetric(arr, size){
-			    for (var i = 0; i < size; i++){
-			        for (var j = 0; j < size; j++){
-			            if (arr[i][j] != arr[j][i]){
+			//Симметричность
+			function symmetric(arr, size) {
+			    for (var i = 0; i < size; i++) {
+			        for (var j = 0; j < size; j++) {
+			            if (arr[i][j] != arr[j][i]) {
 			                document.getElementById('Symmetric').innerHTML = "нет";
 			                return false;
 			            }
 			        }
 			    }
 			    document.getElementById('Symmetric').innerHTML = "да";
+			    if (str.length > 19) {
+			        str+= ", "
+			    }
+			    str+= "симметрична";
 			    return true;
 			}
-			function coSymmetric(arr, size){
-			    for (var i = 0; i < size; i++){
-			        for (var j = 0; j < size; j++){
-			            if (arr[i][j] != -arr[j][i]){
+			//Кососимметричность
+			function coSymmetric(arr, size) {
+			    for (var i = 0; i < size; i++) {
+			        for (var j = 0; j < size; j++) {
+			            if (arr[i][j] != -arr[j][i]) {
 			                document.getElementById('CoSymmetric').innerHTML = "нет";
 			                return false;
 			            }
 			        }
 			    }
 			    document.getElementById('CoSymmetric').innerHTML = "да";
+			    if (str.length > 19) {
+			        str+= ", "
+			    }
+			    str+= "кососимметрична";
+			    return true;
+			}
+			//Антисимметричность
+			function antiSymmetric(arr, size) {
+			    for (var i = 0; i < size; i++) {
+			        for (var j = 0; j < size; j++) {
+			            if (+arr[i][j] * +arr[j][i] != 0){
+			                document.getElementById('AntiSymmetric').innerHTML = "нет";
+			                return false;
+			            }
+			        }
+			    }
+			    document.getElementById('AntiSymmetric').innerHTML = "да";
+			    if (str.length > 19) {
+			        str+= ", "
+			    }
+			    str+= "антисимметрична";
+			    return true;
+			}
+			//Умножение строки на столбец
+			function multiple(arr, size, x, y) {
+			    for (var i = 0; i < size; i++) {
+			        if (+arr[x][i] * +arr[i][y] != 0) {
+			            return true;
+			        }
+			    }
+			    return false;
+			}
+			//Транзитивность
+			function transitive(arr, size) {
+			    for (var i = 0; i < size; i++) {
+			        for (var j = 0; j < size; j++) {
+			            if (multiple(arr, size, i, j) > arr[i][j]) {
+			                document.getElementById('Transitive').innerHTML = "нет";
+			                return false;
+			            }
+			        }
+			    }
+			    document.getElementById('Transitive').innerHTML = "да";
+			    if (str.length > 19) {
+			        str+= ", "
+			    }
+			    str+= "транзитивна";
 			    return true;
 			}
 			function check()
 			{
 			    var elements = [], temp, size, matrix = [], result = "";
+			    str = "Полученная матрица ";
 				size = +document.getElementById('size').value;
 				temp = document.getElementById('elements').value;
 				for (var i = 0; i < size; i++) {
@@ -78,6 +135,12 @@
 				reflecsive(matrix, size);
 				symmetric(matrix, size);
 				coSymmetric(matrix, size);
+				antiSymmetric(matrix, size);
+				transitive(matrix, size);
+				if (str.length == 19) {
+			        str+= "не обладает искомыми свойствами"
+			    }
+				document.getElementById('Res').innerHTML = str;
 			}
 		</script>
 		<style type="text/css" media="all">
@@ -96,10 +159,12 @@
 			<input type="submit" class="btn btn-primary" id="readybtn" value="➜ Проверить отношения ➜"> 
 			<label>Полученная матрица<textarea class="form-control" readonly="readonly" id="result" cols="30" rows="10"></textarea> </label> <br> <br>
 		</form>
+		<span id="Res"></span> <br>
 		</center>
 		Рефлексивность: <span id="Reflecsive"></span> <br>
 		Симметричность: <span id="Symmetric"></span> <br>
 		Кососимметричность: <span id="CoSymmetric"></span> <br>
-		Транзитивность: <span id="Difference"></span> <br>
+		Антисимметричность: <span id="AntiSymmetric"></span> <br>
+		Транзитивность: <span id="Transitive"></span> <br>
 	</body>
 </html>
