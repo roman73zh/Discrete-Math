@@ -1,0 +1,27 @@
+<html>
+	<head>
+	    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+	    <script type="text/javascript" src="js/raphael-min.js"></script>
+        <script type="text/javascript" src="js/dracula_graffle.js"></script>
+        <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+        <script type="text/javascript" src="js/dracula_graph.js?v18"></script>
+        <script type="text/javascript" src="js/main.js?v11"></script>
+        
+	    <script language="javascript" type="text/javascript">
+            
+        </script>
+	</head>
+	<body>
+	    <center>
+		<form onsubmit="build();return false;">
+			Введите матрицу ориентированного графа, чтобы найти самый короткий путь между заданными вершинами. <br>
+			В матрице укажите расстояния между вершинами, если прямой дороги нет - введите 0. На главной диагонали расставьте нули. <br> <br>
+			<label>Матрица графа<textarea class="form-control" id="elements" cols="30" rows="10"></textarea> </label> <br> <br>
+			<label class="control-label">Ищем путь из <input type="number" size="3" id="from" min="1" max="15" value="1"> вершины в <input type="number" size="3" id="to" min="1" max="15" value="2"> вершину</label> <br> <br>
+			<input type="submit" class="btn btn-primary" id="readybtn" value="Построить и найти расстояние"> 
+		</form>
+		<span id="result"></span> <br>
+		<div id="paper"></div>
+		</center>
+	</body>
+</html>
