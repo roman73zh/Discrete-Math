@@ -1,0 +1,29 @@
+<html>
+	<head>
+	    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+	    <script type="text/javascript" src="js/raphael-min.js"></script>
+        <script type="text/javascript" src="js/dracula_graffle.js"></script>
+        <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+        <script type="text/javascript" src="js/dracula_graph.js?v18"></script>
+        <script type="text/javascript" src="js/main.js?v14"></script>
+	    <style type="text/css" media="all">
+        #readybtn {
+          position: relative;
+          bottom: -125;
+        }
+        </style>
+	</head>
+	<body>
+	    <center>
+		<form onsubmit="build();return false;">
+			Введите матрицу ориентированного графа, чтобы построить матрицу достижимости. <br>
+			Допустим ввод как бинарной матрицы, так и указывающей расстояние между вершинами. <br> <br>
+			<label>Матрица графа<textarea class="form-control" id="elements" cols="30" rows="10"></textarea> </label>
+			<input type="submit" class="btn btn-primary" id="readybtn" value="➜ Построить матрицу достижимости ➜"> 
+			<label>Полученная матрица<textarea class="form-control" readonly="readonly" id="result" cols="30" rows="10"></textarea> </label> <br> <br>
+		</form>
+		<span id="result"></span> <br>
+		<div id="paper"></div>
+		</center>
+	</body>
+</html>
